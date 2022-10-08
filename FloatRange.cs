@@ -133,6 +133,10 @@ namespace DoubleHeat.Utilites {
         }
 
         public static bool GetIntersection (IEnumerable<FloatRange> ranges, out FloatRange result) {
+            if (ranges == null || ranges.Count() == 0) {
+                result = default;
+                return false;
+            }
             float newMinValue = ranges.Max(range => range.MinValue);
             float newMaxValue = ranges.Min(range => range.MaxValue);
             if (newMinValue > newMaxValue) {
